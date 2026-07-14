@@ -1,46 +1,63 @@
-print(2+3)
-print(3-1)
-print(4*5)
-print(10/2)
-print(10%3)
-print(2**3)
-print(10//3)
-print(5>3)
-print(5<3)
-print(5==5)
-print(5!=3)
-print(5>=3)
-print(5<=3) 
-print(5 and 3)
-print(5 or 3)
-print(not 5)
-print(not 0)
-print(5 is 5)
-print(5 is not 3)
-print(5 in [1, 2, 3, 4, 5])
-print(5 not in [1, 2, 3, 4, 5])
-print(5 if 5 > 3 else 3)
-print(3 if 5 > 3 else 5)
-print(type(10))          # Int
-print(type(3.14))        # Float
-print(type(1 + 3j))      # Complex number
-print(type('Asabeneh'))  # String
-print(type([1, 2, 3]))   # List
-print(type({'name':'Asabeneh'})) # Dictionary
-print(type({9.8, 3.14, 2.7}))    # Set
-print(type((9.8, 3.14, 2.7))) 
-import math
-point_a = (2, 3)
-point_b = (10, 8)
-distance = math.dist(point_a, point_b)
-print(f"The Euclidean distance is: {distance}")
-import numpy as np
-
-# Define two points as numpy arrays
-point_a = np.array([2, 3])
-point_b = np.array([10, 8])
-
-# Calculate Euclidean distance using the linear algebra norm function
-distance = np.linalg.norm(point_a - point_b)
-
-print(f"The Euclidean distance is: {distance}")
+#Day 2: 30 Days of python programming#
+first_name = "Kislay"
+last_name = "Sinha"
+full_name = "Kislay Sinha"
+country = "India"
+city = "Ranchi"
+age = 20
+year = 2026
+is_married = False
+is_true = True
+is_light_on = False
+multiple_variable = "Kislay", "Sinha", "India", "Ranchi", 20, 2026, False, True, False
+print(type(first_name))
+print(type(last_name))
+print(type(full_name))
+print(type(country))
+print(type(city))
+print(type(age))
+print(type(year))
+print(type(is_married))
+print(type(is_true))
+print(type(is_light_on))
+print(len(first_name))
+print(len(last_name))
+print(len(full_name))
+print(len(country))
+print(len(city))
+# Define first and last names
+first_name = "Kislay"
+last_name = "Sinha"
+len_first = len(first_name)
+len_last = len(last_name)
+if len_first > len_last:
+    print(f"First name ({first_name}) is longer than last name ({last_name}).")
+elif len_last > len_first:
+    print(f"Last name ({last_name}) is longer than first name ({first_name}).")
+else:
+    print(f"Both names are equal in length ({len_first} characters).")
+num_1 = 5
+num_2 = 4
+sum_nums = num_1 + num_2
+diff_nums = num_1 - num_2
+multiply_nums = num_1 * num_2
+divide_nums = num_1 / num_2
+exponential_nums = num_1 ** num_2
+floor_division_nums = num_1 // num_2
+area_of_circle = 3.14*(5**2)
+circumference_of_circle = 2*3.14*5
+input_radius = float(input("Enter the radius of the circle: "))
+area_of_circle = 3.14 * (input_radius ** 2)
+circumference_of_circle = 2 * 3.14 * input_radius
+print(f"Area of the circle: {area_of_circle}")
+print(f"Circumference of the circle: {circumference_of_circle}")
+first_name = input("Enter your first name: ")
+last_name = input("Enter your last name: ")
+country = input("Enter your country: ")
+age = int(input("Enter your age: "))
+print("\n--- User Profile ---")
+print(f"First Name: {first_name}")
+print(f"Last Name: {last_name}")
+print(f"Country: {country}")
+print(f"Age: {age}")
+help('keywords')
