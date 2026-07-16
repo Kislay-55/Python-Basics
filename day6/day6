@@ -1,0 +1,33 @@
+family_members = ('brother', 'sister', 'father', 'mother')
+*siblings, father, mother = family_members
+fruits = ('banana', 'orange', 'mango', 'lemon')
+vegetables = ('tomato', 'potato', 'cabbage', 'onion')
+animal_products = ('milk', 'meat', 'butter', 'egg')
+food_stuff_tp = fruits + vegetables + animal_products
+food_stuff_lt = list(food_stuff_tp)
+middle_index = len(food_stuff_lt) // 2
+middle_item = food_stuff_lt[middle_index] if len(food_stuff_lt) % 2 != 0 else food_stuff_lt[middle_index - 1 : middle_index + 1]
+first_three = food_stuff_lt[:3]
+last_three = food_stuff_lt[-3:]
+del food_stuff_tp
+nordic_countries = ('Denmark', 'Finland', 'Iceland', 'Norway', 'Sweden')
+estonia_check = 'Estonia' in nordic_countries
+iceland_check = 'Iceland' in nordic_countries
+
+print("siblings:", siblings)
+print("parents:", father, mother)
+print("food_stuff_tp joined:", fruits + vegetables + animal_products)
+print("middle:", middle_item)
+print("first_three:", first_three, "last_three:", last_three)
+print("estonia:", estonia_check, "iceland:", iceland_check)
+family_members = ('brother', 'sister', 'father', 'mother')
+*siblings, father, mother = family_members
+fruits, vegetables, animal_products = ('apple', 'banana'), ('tomato', 'potato'), ('milk', 'cheese')
+food_stuff_tp = fruits + vegetables + animal_products
+food_stuff_lt = list(food_stuff_tp)
+middle_stuff = food_stuff_lt[len(food_stuff_lt)//2-1 : len(food_stuff_lt)//2+1] if len(food_stuff_lt) % 2 == 0 else food_stuff_lt[len(food_stuff_lt)//2]
+first_three, last_three = food_stuff_lt[:3], food_stuff_lt[-3:]
+del food_stuff_tp
+nordic_countries = ('Denmark', 'Finland', 'Iceland', 'Norway', 'Sweden')
+print('Estonia' in nordic_countries)
+print('Iceland' in nordic_countries)
