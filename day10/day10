@@ -1,0 +1,208 @@
+# ==============================================================================
+# EXERCISES: LEVEL 1
+# ==============================================================================
+
+# 1. Iterate 0 to 10 using for loop, do the same using while loop.
+print("--- 0 to 10 (For Loop) ---")
+for i in range(11):
+    print(i)
+
+print("\n--- 0 to 10 (While Loop) ---")
+i = 0
+while i <= 10:
+    print(i)
+    i += 1
+
+
+# 2. Iterate 10 to 0 using for loop, do the same using while loop.
+print("\n--- 10 to 0 (For Loop) ---")
+for i in range(10, -1, -1):
+    print(i)
+
+print("\n--- 10 to 0 (While Loop) ---")
+i = 10
+while i >= 0:
+    print(i)
+    i -= 1
+
+
+# 3. Write a loop that makes seven calls to print() to output a triangle
+print("\n--- Triangle Pattern ---")
+for i in range(1, 8):
+    print('#' * i)
+
+
+# 4. Use nested loops to create the specified grid pattern
+print("\n--- Grid Pattern ---")
+for i in range(8):
+    for j in range(8):
+        print('#', end=' ')
+    print()
+
+
+# 5. Print the multiplication pattern
+print("\n--- Multiplication Pattern ---")
+for i in range(11):
+    print(f"{i} x {i} = {i * i}")
+
+
+# 6. Iterate through the tech list using a for loop
+print("\n--- Tech List Iteration ---")
+techs = ['Python', 'Numpy', 'Pandas', 'Django', 'Flask']
+for tech in techs:
+    print(tech)
+
+
+# 7. Use for loop to iterate from 0 to 100 and print only even numbers
+print("\n--- Even Numbers (0 to 100) ---")
+for i in range(0, 101, 2):
+    print(i)
+
+
+# 8. Use for loop to iterate from 0 to 100 and print only odd numbers
+print("\n--- Odd Numbers (0 to 100) ---")
+for i in range(1, 101, 2):
+    print(i)
+
+
+# ==============================================================================
+# EXERCISES: LEVEL 2
+# ==============================================================================
+
+# 1. Sum of all numbers from 0 to 100
+print("\n--- Sum of All Numbers (0 to 100) ---")
+total_sum = 0
+for i in range(101):
+    total_sum += i
+print(f"The sum of all numbers is {total_sum}.")
+
+
+# 2. Sum of all evens and sum of all odds from 0 to 100
+print("\n--- Sum of Evens and Odds (0 to 100) ---")
+even_sum = 0
+odd_sum = 0
+for i in range(101):
+    if i % 2 == 0:
+        even_sum += i
+    else:
+        odd_sum += i
+print(f"The sum of all evens is {even_sum}. And the sum of all odds is {odd_sum}.")
+
+
+# ==============================================================================
+# EXERCISES: LEVEL 3
+# ==============================================================================
+
+# Mock datasets matching the typical countries and countries_data files
+countries = [
+    'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 
+    'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 
+    'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia', 
+    'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria', 'Burkina Faso', 
+    'Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Central African Republic', 
+    'Chad', 'Chile', 'China', 'Colombia', 'Comoros', 'Congo', 'Costa Rica', 'Croatia', 'Cuba', 
+    'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 
+    'East Timor', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 
+    'Ethiopia', 'Fiji', 'Finland', 'France', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 
+    'Greece', 'Grenada', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Honduras', 
+    'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 
+    'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', 'North Korea', 'South Korea', 
+    'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 
+    'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 
+    'Maldives', 'Mali', 'Malta', 'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico', 
+    'Micronesia', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 
+    'Myanmar', 'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 
+    'Nigeria', 'Norway', 'Oman', 'Pakistan', 'Palau', 'Panama', 'Papua New Guinea', 'Paraguay', 
+    'Peru', 'Philippines', 'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda', 
+    'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent', 'Samoa', 'San Marino', 'Saudi Arabia', 
+    'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 
+    'Solomon Islands', 'Somalia', 'South Africa', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 
+    'Swaziland', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', 
+    'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Tuvalu', 
+    'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 
+    'Uzbekistan', 'Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
+]
+
+countries_data = [
+    {"name": "Afghanistan", "capital": "Kabul", "languages": ["Pashto", "Uzbek", "Turkmen"], "population": 27657145},
+    {"name": "Åland Islands", "capital": "Mariehamn", "languages": ["Swedish"], "population": 28875},
+    {"name": "Albania", "capital": "Tirana", "languages": ["Albanian"], "population": 2886026},
+    {"name": "Algeria", "capital": "Algiers", "languages": ["Arabic"], "population": 40400000},
+    {"name": "American Samoa", "capital": "Pago Pago", "languages": ["English", "Samoan"], "population": 57100},
+    {"name": "Andorra", "capital": "Andorra la Vella", "languages": ["Catalan"], "population": 78014},
+    {"name": "Angola", "capital": "Luanda", "languages": ["Portuguese"], "population": 25868000},
+    {"name": "Anguilla", "capital": "The Valley", "languages": ["English"], "population": 13452},
+    {"name": "Antarctica", "capital": "", "languages": [], "population": 0},
+    {"name": "Antigua and Barbuda", "capital": "Saint John's", "languages": ["English"], "population": 86295},
+    {"name": "Argentina", "capital": "Buenos Aires", "languages": ["Spanish", "Guaraní"], "population": 43590400},
+    {"name": "Armenia", "capital": "Yerevan", "languages": ["Armenian"], "population": 2994400},
+    {"name": "Aruba", "capital": "Oranjestad", "languages": ["Dutch", "Papiamento"], "population": 107394},
+    {"name": "Australia", "capital": "Canberra", "languages": ["English"], "population": 24117360},
+    {"name": "Austria", "capital": "Vienna", "languages": ["German"], "population": 8725111},
+    {"name": "Azerbaijan", "capital": "Baku", "languages": ["Azerbaijani"], "population": 9730500},
+    {"name": "Bahamas", "capital": "Nassau", "languages": ["English"], "population": 378040},
+    {"name": "Bahrain", "capital": "Manama", "languages": ["Arabic"], "population": 1404900},
+    {"name": "Bangladesh", "capital": "Dhaka", "languages": ["Bengali"], "population": 161006790},
+    {"name": "Barbados", "capital": "Bridgetown", "languages": ["English"], "population": 285000},
+    {"name": "Belarus", "capital": "Minsk", "languages": ["Belarusian", "Russian"], "population": 9498700},
+    {"name": "Belgium", "capital": "Brussels", "languages": ["Dutch", "French", "German"], "population": 11319511},
+    {"name": "Belize", "capital": "Belmopan", "languages": ["English", "Spanish", "Creole"], "population": 370300},
+    {"name": "Benin", "capital": "Porto-Novo", "languages": ["French"], "population": 10653654},
+    {"name": "Bermuda", "capital": "Hamilton", "languages": ["English"], "population": 61954},
+    {"name": "Bhutan", "capital": "Thimphu", "languages": ["Dzongkha"], "population": 775620},
+    {"name": "Bolivia", "capital": "Sucre", "languages": ["Spanish", "Aymara", "Quechua"], "population": 10985059},
+    {"name": "China", "capital": "Beijing", "languages": ["Chinese"], "population": 1377422166},
+    {"name": "India", "capital": "New Delhi", "languages": ["Hindi", "English"], "population": 1295210000},
+    {"name": "United States of America", "capital": "Washington, D.C.", "languages": ["English"], "population": 323947000},
+    {"name": "Indonesia", "capital": "Jakarta", "languages": ["Indonesian"], "population": 258705000},
+    {"name": "Brazil", "capital": "Brasília", "languages": ["Portuguese"], "population": 206135893},
+    {"name": "Pakistan", "capital": "Islamabad", "languages": ["English", "Urdu"], "population": 194125062},
+    {"name": "Nigeria", "capital": "Abuja", "languages": ["English"], "population": 186988000},
+    {"name": "Russia", "capital": "Moscow", "languages": ["Russian"], "population": 146599183},
+    {"name": "Japan", "capital": "Tokyo", "languages": ["Japanese"], "population": 126960000}
+]
+
+# 1. Loop through countries and extract all containing 'land'
+print("\n--- Countries containing 'land' ---")
+land_countries = []
+for country in countries:
+    if 'land' in country.lower():
+        land_countries.append(country)
+print(land_countries)
+
+
+# 2. Reverse the fruit list using a loop
+print("\n--- Reversed Fruit List ---")
+fruits = ['banana', 'orange', 'mango', 'lemon']
+reversed_fruits = []
+for i in range(len(fruits) - 1, -1, -1):
+    reversed_fruits.append(fruits[i])
+print(reversed_fruits)
+
+
+# 3. Total number of languages in the countries_data
+print("\n--- Total Number of Languages ---")
+languages_set = set()
+for country_item in countries_data:
+    for lang in country_item['languages']:
+        languages_set.add(lang)
+print(f"Total languages: {len(languages_set)}")
+
+
+# 4. Find the ten most spoken languages from the data
+print("\n--- Ten Most Spoken Languages ---")
+language_counts = {}
+for country_item in countries_data:
+    for lang in country_item['languages']:
+        language_counts[lang] = language_counts.get(lang, 0) + 1
+
+# Sort languages by frequency
+sorted_languages = sorted(language_counts.items(), key=lambda x: x[1], reverse=True)
+print(sorted_languages[:10])
+
+
+# 5. Find the 10 most populated countries in the world
+print("\n--- Ten Most Populated Countries ---")
+sorted_by_population = sorted(countries_data, key=lambda x: x['population'], reverse=True)
+for rank, country_item in enumerate(sorted_by_population[:10], 1):
+    print(f"{rank}. {country_item['name']}: {country_item['population']:,}")

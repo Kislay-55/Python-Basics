@@ -1,0 +1,44 @@
+dog = {}
+
+dog['name'] = 'Rex'
+dog['color'] = 'Brown'
+dog['breed'] = 'German Shepherd'
+dog['legs'] = 4
+dog['age'] = 3
+
+student = {
+    'first_name': 'Alex',
+    'last_name': 'Smith',
+    'gender': 'Non-binary',
+    'age': 24,
+    'marital status': 'Single',
+    'skills': ['Python', 'Data Analysis'],
+    'country': 'United States',
+    'city': 'Chicago',
+    'address': '789 Oak Ave'
+}
+
+student_length = len(student)
+print(student_length)
+
+skills_value = student['skills']
+skills_type = type(skills_value)
+print(skills_value)
+print(skills_type)
+
+student['skills'].extend(['SQL', 'Machine Learning'])
+print(student['skills'])
+
+keys_list = list(student.keys())
+print(keys_list)
+
+values_list = list(student.values())
+print(values_list)
+
+tuples_list = list(student.items())
+print(tuples_list)
+
+del student['marital status']
+print(student)
+
+del dog

@@ -1,0 +1,132 @@
+# 1. Driving Age Check
+age_input = input("Enter your age: ")
+age = int(age_input)
+if age >= 18:
+    print("You are old enough to learn to drive.")
+else:
+    years_left = 18 - age
+    if years_left == 1:
+        print("You need 1 more year to learn to drive.")
+    else:
+        print(f"You need {years_left} more years to learn to drive.")
+
+# 2. Age Comparison (Assuming "my_age" is set to 25)
+my_age = 25
+your_age_input = input("Enter your age: ")
+your_age = int(your_age_input)
+
+if your_age > my_age:
+    diff = your_age - my_age
+    if diff == 1:
+        print("You are 1 year older than me.")
+    else:
+        print(f"You are {diff} years older than me.")
+elif your_age < my_age:
+    diff = my_age - your_age
+    if diff == 1:
+        print("I am 1 year older than you.")
+    else:
+        print(f"I am {diff} years older than you.")
+else:
+    print("We are the exact same age!")
+
+# 3. Comparing Two Numbers
+num_one = int(input("Enter number one: "))
+num_two = int(input("Enter number two: "))
+
+if num_one > num_two:
+    print(f"{num_one} is greater than {num_two}")
+elif num_one < num_two:
+    print(f"{num_one} is smaller than {num_two}")
+else:
+    print(f"{num_one} is equal to {num_two}")
+
+
+# --- PART 2: LEVEL 2 EXERCISES ---
+
+# 1. Student Grading System
+score = int(input("Enter student score: "))
+if 90 <= score <= 100:
+    print("A")
+elif 80 <= score <= 89:
+    print("B")
+elif 70 <= score <= 79:
+    print("C")
+elif 60 <= score <= 69:
+    print("D")
+elif 0 <= score <= 59:
+    print("F")
+else:
+    print("Invalid score entered.")
+
+# 2. Season Finder
+month = input("Enter a month: ").capitalize()
+autumn = ["September", "October", "November"]
+winter = ["December", "January", "February"]
+spring = ["March", "April", "May"]
+summer = ["June", "July", "August"]
+
+if month in autumn:
+    print("The season is Autumn.")
+elif month in winter:
+    print("The season is Winter.")
+elif month in spring:
+    print("The season is Spring.")
+elif month in summer:
+    print("The season is Summer.")
+else:
+    print("That is not a valid month.")
+
+# 3. Fruit List Checker
+fruits = ['banana', 'orange', 'mango', 'lemon']
+new_fruit = input("Enter a fruit to check: ").lower()
+
+if new_fruit in fruits:
+    print("That fruit already exist in the list")
+else:
+    fruits.append(new_fruit)
+    print("Modified list:", fruits)
+
+
+# --- PART 3: LEVEL 3 EXERCISES ---
+
+person = {
+    'first_name': 'Asabeneh',
+    'last_name': 'Yetayeh',
+    'age': 250,
+    'country': 'Finland',
+    'is_married': True,
+    'skills': ['JavaScript', 'React', 'Node', 'MongoDB', 'Python'],
+    'address': {
+        'street': 'Space street',
+        'zipcode': '02210'
+    }
+}
+
+# 1. Check skills key and find the middle skill
+if 'skills' in person and person['skills']:
+    skills_list = person['skills']
+    middle_index = len(skills_list) // 2
+    print("Middle skill:", skills_list[middle_index])
+
+# 2. Check skills key and look for 'Python'
+if 'skills' in person:
+    has_python = 'Python' in person['skills']
+    print("Has Python skill:", has_python)
+
+# 3. Determine developer role based on skills
+if 'skills' in person:
+    skills_set = set(person['skills'])
+    if skills_set == {'JavaScript', 'React'}:
+        print('He is a front end developer')
+    elif {'Node', 'Python', 'MongoDB'}.issubset(skills_set):
+        print('He is a backend developer')
+    elif {'React', 'Node', 'MongoDB'}.issubset(skills_set):
+        print('He is a fullstack developer')
+    else:
+        print('unknown title')
+
+# 4. Check marriage status and country
+if person.get('is_married') and person.get('country') == 'Finland':
+    print(f"{person['first_name']} {person['last_name']} lives in {person['country']}. He is married.")
+
