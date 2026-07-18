@@ -1,0 +1,248 @@
+import math
+from collections import Counter
+
+# ==========================================
+# EXERCISES: LEVEL 1
+# ==========================================
+
+# 1. Add two numbers
+def add_two_numbers(a, b):
+    return a + b
+
+# 2. Area of a circle
+def area_of_circle(r):
+    return math.pi * r * r
+
+# 3. Add all numbers with type checking
+def add_all_nums(*args):
+    for item in args:
+        if not isinstance(item, (int, float)):
+            return f"Error: '{item}' is not a number. All arguments must be numeric types."
+    return sum(args)
+
+# 4. Convert Celsius to Fahrenheit
+def convert_celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+# 5. Check season
+def check_season(month):
+    month = month.lower()
+    if month in ['september', 'october', 'november']:
+        return 'Autumn'
+    elif month in ['december', 'january', 'february']:
+        return 'Winter'
+    elif month in ['march', 'april', 'may']:
+        return 'Spring'
+    elif month in ['june', 'july', 'august']:
+        return 'Summer'
+    else:
+        return 'Invalid month'
+
+# 6. Calculate slope (from a linear equation ax + by + c = 0)
+def calculate_slope(a, b, c):
+    if b == 0:
+        return "Undefined slope (Vertical line)"
+    return -a / b
+
+# 7. Solve quadratic equation (ax^2 + bx + c = 0)
+def solve_quadratic_eqn(a, b, c):
+    discriminant = b**2 - 4*a*a
+    if discriminant < 0:
+        # Complex roots
+        root1 = (-b + math.isqrt(abs(discriminant)) * 1j) / (2*a)
+        root2 = (-b - math.isqrt(abs(discriminant)) * 1j) / (2*a)
+        return {root1, root2}
+    elif discriminant == 0:
+        return {-b / (2*a)}
+    else:
+        root1 = (-b + math.sqrt(discriminant)) / (2*a)
+        root2 = (-b - math.sqrt(discriminant)) / (2*a)
+        return {root1, root2}
+
+# 8. Print list elements
+def print_list(lst):
+    for item in lst:
+        print(item)
+
+# 9. Reverse list using loops
+def reverse_list(arr):
+    reversed_arr = []
+    for i in range(len(arr) - 1, -1, -1):
+        reversed_arr.append(arr[i])
+    return reversed_arr
+
+# 10. Capitalize list items
+def capitalize_list_items(lst):
+    return [str(item).capitalize() for item in lst]
+
+# 11. Add item to end of list
+def add_item(lst, item):
+    new_lst = lst.copy()
+    new_lst.append(item)
+    return new_lst
+
+# 12. Remove item from list
+def remove_item(lst, item):
+    new_lst = lst.copy()
+    if item in new_lst:
+        new_lst.remove(item)
+    return new_lst
+
+# 13. Sum of numbers up to range
+def sum_of_numbers(num):
+    return sum(range(1, num + 1))
+
+# 14. Sum of odds up to range
+def sum_of_odds(num):
+    return sum(i for i in range(1, num + 1) if i % 2 != 0)
+
+# 15. Sum of evens up to range
+def sum_of_even(num):
+    return sum(i for i in range(1, num + 1) if i % 2 == 0)
+
+
+# ==========================================
+# EXERCISES: LEVEL 2
+# ==========================================
+
+# 1. Count evens and odds in a range up to a number
+def evens_and_odds(num):
+    odds = sum(1 for i in range(num + 1) if i % 2 != 0)
+    evens = sum(1 for i in range(num + 1) if i % 2 == 0)
+    return f"The number of odds are {odds}.\nThe number of evens are {evens}."
+
+# 2. Factorial
+def factorial(n):
+    if n < 0:
+        return "Factorial is not defined for negative numbers."
+    return math.factorial(n)
+
+# 3. Is empty
+def is_empty(val):
+    return not bool(val)
+
+# 4. Statistical Functions
+def calculate_mean(lst):
+    return sum(lst) / len(lst) if lst else 0
+
+def calculate_median(lst):
+    if not lst: return 0
+    sorted_lst = sorted(lst)
+    n = len(sorted_lst)
+    mid = n // 2
+    if n % 2 == 0:
+        return (sorted_lst[mid - 1] + sorted_lst[mid]) / 2
+    return sorted_lst[mid]
+
+def calculate_mode(lst):
+    if not lst: return []
+    data = Counter(lst)
+    most_common = data.most_common()
+    max_count = most_common[0][1]
+    modes = [k for k, v in data.items() if v == max_count]
+    return modes
+
+def calculate_range(lst):
+    if not lst: return 0
+    return max(lst) - min(lst)
+
+def calculate_variance(lst):
+    if not lst: return 0
+    mean = calculate_mean(lst)
+    return sum((x - mean) ** 2 for x in lst) / len(lst)
+
+def calculate_std(lst):
+    return math.sqrt(calculate_variance(lst))
+
+# 5. Greet with default argument
+def greet(name="Guest"):
+    print(f"Hello, {name}!")
+
+# 6. Show dynamic named arguments
+def show_args(**kwargs):
+    pairs = [f"{k}: {v}" for k, v in kwargs.items()]
+    print(f"Received: {', '.join(pairs)}")
+
+
+# ==========================================
+# EXERCISES: LEVEL 3
+# ==========================================
+
+# 1. Check if number is prime
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(math.sqrt(num)) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+# 2. Check if all items are unique
+def all_items_unique(lst):
+    return len(lst) == len(set(lst))
+
+# 3. Check if all items are of the same data type
+def all_same_type(lst):
+    if not lst:
+        return True
+    first_type = type(lst[0])
+    return all(type(item) == first_type for item in lst)
+
+# 4. Check if a string is a valid Python variable name
+def is_valid_variable(var_name):
+    return str(var_name).isidentifier()
+
+# 5 & 6. Mock countries data for Demonstration Purposes 
+# (Simulating access to data folder countries-data.py)
+mock_countries_data = [
+    {"name": "China", "population": 1411000000, "languages": ["Chinese"]},
+    {"name": "India", "population": 1393000000, "languages": ["Hindi", "English"]},
+    {"name": "USA", "population": 331000000, "languages": ["English", "Spanish"]},
+    # ... assuming more entries exist in actual countries-data.py
+]
+
+def most_spoken_languages(countries_list, limit=10):
+    lang_counter = Counter()
+    for country in countries_list:
+        for lang in country.get("languages", []):
+            lang_counter[lang] += 1
+    return lang_counter.most_common(limit)
+
+def most_populated_countries(countries_list, limit=10):
+    sorted_countries = sorted(countries_list, key=lambda x: x.get("population", 0), reverse=True)
+    return [(c["name"], c["population"]) for c in sorted_countries[:limit]]
+
+
+# ==========================================
+# VERIFICATION EXAMPLES (RUNNING TESTS)
+# ==========================================
+if __name__ == "__main__":
+    print("--- Reverse List ---")
+    print(reverse_list([1, 2, 3, 4, 5]))
+    print(reverse_list(["A", "B", "C"]))
+
+    print("\n--- Add Item ---")
+    food_stuff = ['Potato', 'Tomato', 'Mango', 'Milk']
+    print(add_item(food_stuff, 'Meat'))
+    numbers = [2, 3, 7, 9]
+    print(add_item(numbers, 5))
+
+    print("\n--- Remove Item ---")
+    print(remove_item(food_stuff, 'Mango'))
+    print(remove_item(numbers, 3))
+
+    print("\n--- Sum of Numbers ---")
+    print(sum_of_numbers(5))
+    print(sum_of_numbers(10))
+    print(sum_of_numbers(100))
+
+    print("\n--- Evens and Odds ---")
+    print(evens_and_odds(100))
+
+    print("\n--- Greet ---")
+    greet()
+    greet("Alice")
+
+    print("\n--- Show Args ---")
+    show_args(name="Alice", age=30, city="New York")
+    show_args(name="Bob", pet="Fluffy, the bunny")

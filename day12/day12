@@ -1,0 +1,120 @@
+import random
+import string
+
+# ==========================================
+# EXERCISES: LEVEL 1
+# ==========================================
+
+# 1. Generate a six-digit/character random user ID
+def random_user_id():
+    # Uses lowercase letters and digits to match the '1ee33d' example
+    characters = string.ascii_lowercase + string.digits
+    return ''.join(random.choice(characters) for _ in range(6))
+
+
+# 2. Dynamic user ID generation based on user inputs
+def user_id_gen_by_user():
+    # Prompt the user for dimensions
+    char_count = int(input("Enter the number of characters per ID: "))
+    id_count = int(input("Enter the number of IDs to generate: "))
+    
+    # Mix of uppercase, lowercase letters, and digits to match your example outputs
+    pool = string.ascii_letters + string.digits
+    
+    generated_ids = []
+    for _ in range(id_count):
+        single_id = ''.join(random.choice(pool) for _ in range(char_count))
+        generated_ids.append(single_id)
+        
+    # Return as a multiline string for readable console output
+    return '\n'.join(generated_ids)
+
+
+# 3. Generate a single RGB color string
+def rgb_color_gen():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    return f"rgb({r},{g},{b})"
+
+
+# ==========================================
+# EXERCISES: LEVEL 2
+# ==========================================
+
+# 1. Return an array of N hexadecimal colors
+def list_of_hexa_colors(num_colors):
+    hex_chars = '0123456789abcdef'
+    colors = []
+    for _ in range(num_colors):
+        hex_color = '#' + ''.join(random.choice(hex_chars) for _ in range(6))
+        colors.append(hex_color)
+    return colors
+
+
+# 2. Return an array of N RGB color strings
+def list_of_rgb_colors(num_colors):
+    colors = []
+    for _ in range(num_colors):
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        colors.append(f"rgb({r}, {g}, {b})")
+    return colors
+
+
+# 3. Combined color generator handling both types
+def generate_colors(color_type, num_colors):
+    if color_type.lower() == 'hexa':
+        return list_of_hexa_colors(num_colors)
+    elif color_type.lower() == 'rgb':
+        return list_of_rgb_colors(num_colors)
+    else:
+        return "Invalid color type. Use 'hexa' or 'rgb'."
+
+
+# ==========================================
+# EXERCISES: LEVEL 3
+# ==========================================
+
+# 1. Shuffle a list and return the shuffled result
+def shuffle_list(lst):
+    # Creating a copy prevents mutating the original list passed to the function
+    shuffled = lst.copy()
+    random.shuffle(shuffled)
+    return shuffled
+
+
+# 2. Return an array of 7 unique random numbers ranging from 0 to 9
+def seven_unique_numbers():
+    # random.sample guarantees uniqueness without needing loop checks
+    return random.sample(range(10), 7)
+
+
+# ==========================================
+# VERIFICATION EXAMPLES (RUNNING TESTS)
+# ==========================================
+if __name__ == "__main__":
+    print("--- 1. Random User ID (6 Chars) ---")
+    print(random_user_id())
+
+    print("\n--- 3. RGB Color Gen ---")
+    print(rgb_color_gen())
+
+    print("\n--- Level 2: Generate Colors ---")
+    print("Hexa (3):", generate_colors('hexa', 3))
+    print("Hexa (1):", generate_colors('hexa', 1))
+    print("RGB (3): ", generate_colors('rgb', 3))
+    print("RGB (1): ", generate_colors('rgb', 1))
+
+    print("\n--- Level 3: Shuffle List ---")
+    my_list = [1, 2, 3, 4, 5, 6, 7]
+    print("Original:", my_list)
+    print("Shuffled:", shuffle_list(my_list))
+
+    print("\n--- Level 3: Seven Unique Numbers (0-9) ---")
+    print(seven_unique_numbers())
+
+    # Note: user_id_gen_by_user() is left for last as it halts execution waiting for input()
+    print("\n--- 2. User ID Gen By User Input ---")
+    print(user_id_gen_by_user())
