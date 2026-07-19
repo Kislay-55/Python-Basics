@@ -1,0 +1,116 @@
+from functools import reduce
+
+# Sample data arrays based on the course guide
+countries = ['Estonia', 'Finland', 'Sweden', 'Denmark', 'Norway', 'Iceland']
+names = ['Asabeneh', 'Lidiya', 'Ermias', 'Abraham']
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Define a call function before map, filter or reduce
+def square(x):
+    return x ** 2
+
+def is_even(x):
+    return x % 2 == 0
+
+def add(x, y):
+    return x + y
+
+# Use for loops to print each item
+print("--- Printing Countries ---")
+for country in countries:
+    print(country)
+
+print("\n--- Printing Names ---")
+for name in names:
+    print(name)
+
+print("\n--- Printing Numbers ---")
+for number in numbers:
+    print(number)
+# 1. Use map to change each country to uppercase
+uppercase_countries = list(map(lambda c: c.upper(), countries))
+
+# 2. Use map to change each number to its square
+squared_numbers = list(map(lambda n: n ** 2, numbers))
+
+# 3. Use map to change each name to uppercase
+uppercase_names = list(map(lambda n: n.upper(), names))
+
+# 4. Use filter to filter out countries containing 'land'
+countries_with_land = list(filter(lambda c: 'land' in c.lower(), countries))
+
+# 5. Use filter to filter out countries having exactly six characters
+six_char_countries = list(filter(lambda c: len(c) == 6, countries))
+
+# 6. Use filter to filter out countries containing six letters and more
+six_plus_char_countries = list(filter(lambda c: len(c) >= 6, countries))
+
+# 7. Use filter to filter out countries starting with an 'E'
+starts_with_e = list(filter(lambda c: c.startswith('E'), countries))
+
+# 8. Chain two or more list iterators 
+# Example: square even numbers
+chained_result = list(map(lambda x: x**2, filter(lambda x: x % 2 == 0, numbers)))
+
+# 9. Declare get_string_lists function
+def get_string_lists(lst):
+    return list(filter(lambda x: isinstance(x, str), lst))
+
+# 10. Use reduce to sum all the numbers
+total_sum = reduce(lambda x, y: x + y, numbers)
+
+# 11. Use reduce to construct a structured sentence from countries list
+def join_countries(a, b):
+    # If it's the last element relative to the list layout
+    if b == countries[-1]:
+        return f"{a}, and {b}"
+    return f"{a}, {b}"
+
+sentence = reduce(join_countries, countries) + " are north European countries"
+
+# 12. Declare categorize_countries pattern finder
+def categorize_countries(country_list, pattern):
+    return list(filter(lambda c: pattern.lower() in c.lower(), country_list))
+
+# 13. Create a function returning a counts dictionary of starting letters
+def count_starting_letters(country_list):
+    counts = {}
+    for c in country_list:
+        start_letter = c[0].upper()
+        counts[start_letter] = counts.get(start_letter, 0) + 1
+    return counts
+
+# 14. Declare get_first_ten_countries
+def get_first_ten_countries(country_list):
+    return country_list[:10]
+
+# 15. Declare get_last_ten_countries
+def get_last_ten_countries(country_list):
+    return country_list[-10:]
+# Mock placeholder of countries_data list structure for demonstration
+countries_data = [
+    {"name": "Afghanistan", "capital": "Kabul", "languages": ["Pashto", "Uzbek"], "population": 27657145},
+    {"name": "Finland", "capital": "Helsinki", "languages": ["Finnish", "Swedish"], "population": 5491817},
+    # ... rest of dataset imported from data source
+]
+
+# 1. Sort methods (Returns new sorted copies using lambdas)
+sorted_by_name = sorted(countries_data, key=lambda c: c['name'])
+sorted_by_capital = sorted(countries_data, key=lambda c: c['capital'])
+sorted_by_population = sorted(countries_data, key=lambda c: c['population'], reverse=True)
+
+# 2. Sort out the ten most spoken languages
+def ten_most_spoken_languages(data):
+    lang_counts = {}
+    for country in data:
+        for lang in country['languages']:
+            lang_counts[lang] = lang_counts.get(lang, 0) + 1
+    
+    # Sort by value count descending, slice top 10
+    sorted_langs = sorted(lang_counts.items(), key=lambda x: x[1], reverse=True)
+    return sorted_langs[:10]
+
+# 3. Sort out the ten most populated countries
+def ten_most_populated_countries(data):
+    sorted_pop = sorted(data, key=lambda c: c['population'], reverse=True)
+    return sorted_pop[:10]
