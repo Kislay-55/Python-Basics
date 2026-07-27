@@ -1,0 +1,135 @@
+import csv
+import json
+import os
+import re
+from collections import Counter
+
+
+def count_lines_and_words(filename):
+    with open(filename, 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+        line_count = len(lines)
+        word_count = sum(len(line.split()) for line in lines)
+    return line_count, word_count
+
+
+def most_spoken_languages(filename, limit=10):
+    with open(filename, 'r', encoding='utf-8') as file:
+        countries = json.load(file)
+    all_languages = []
+    for country in countries:
+        all_languages.extend(country.get('languages', []))
+    counts = Counter(all_languages)
+    return [(count, lang) for lang, count in counts.most_common(limit)]
+
+
+def most_populated_countries(filename, limit=10):
+    with open(filename, 'r', encoding='utf-8') as file:
+        countries = json.load(file)
+    sorted_countries = sorted(countries, key=lambda x: x.get('population', 0), reverse=True)
+    return [
+        {'country': country.get('name'), 'population': country.get('population')}
+        for country in sorted_countries[:limit]
+    ]
+
+
+def extract_emails(filename):
+    with open(filename, 'r', encoding='utf-8') as file:
+        content = file.read()
+    email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+    return list(set(re.findall(email_pattern, content)))
+
+
+def find_most_common_words(source, limit=10):
+    if isinstance(source, str) and os.path.isfile(source):
+        with open(source, 'r', encoding='utf-8') as file:
+            text = file.read()
+    else:
+        text = str(source)
+    words = re.findall(r'\b[a-zA-Z]+\b', text.lower())
+    counts = Counter(words)
+    return [(count, word) for word, count in counts.most_common(limit)]
+
+
+def clean_text(text):
+    if os.path.isfile(text):
+        with open(text, 'r', encoding='utf-8') as f:
+            text = f.read()
+    return re.findall(r'\b[a-zA-Z]+\b', text.lower())
+
+
+def remove_support_words(words, stop_words_path='./data/stop_words.py'):
+    stop_words = set()
+    if os.path.isfile(stop_words_path):
+        with open(stop_words_path, 'r', encoding='utf-8') as f:
+            stop_words = set(f.read().split())
+    return [word for word in words if word not in stop_words]
+
+
+def check_text_similarity(file1, file2, stop_words_path='./data/stop_words.py'):
+    words1 = set(remove_support_words(clean_text(file1), stop_words_path))
+    words2 = set(remove_support_words(clean_text(file2), stop_words_path))
+    intersection = words1.intersection(words2)
+    union = words1.union(words2)
+    return round((len(intersection) / len(union)) * 100, 2) if union else 0.0
+
+
+def analyze_hacker_news(filename='./data/hacker_news.csv'):
+    python_count = 0
+    javascript_count = 0
+    java_not_js_count = 0
+    with open(filename, 'r', encoding='utf-8') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            line = " ".join(row)
+            if re.search(r'python', line, re.IGNORECASE):
+                python_count += 1
+            if re.search(r'javascript', line, re.IGNORECASE):
+                javascript_count += 1
+            if re.search(r'\bjava\b', line, re.IGNORECASE) and not re.search(r'javascript', line, re.IGNORECASE):
+                java_not_js_count += 1
+    return {
+        "python_lines": python_count,
+        "javascript_lines": javascript_count,
+        "java_without_js_lines": java_not_js_count
+    }
+
+
+speeches = [
+    './data/obama_speech.txt',
+    './data/michelle_obama_speech.txt',
+    './data/donald_speech.txt',
+    './data/melina_trump_speech.txt'
+]
+
+for speech in speeches:
+    lines, words = count_lines_and_words(speech)
+    print(f"{speech} - Lines: {lines}, Words: {words}")
+
+print("\nMost Spoken Languages (10):")
+print(most_spoken_languages('./data/countries_data.json', 10))
+
+print("\nMost Spoken Languages (3):")
+print(most_spoken_languages('./data/countries_data.json', 3))
+
+print("\nMost Populated Countries (10):")
+print(most_populated_countries('./data/countries_data.json', 10))
+
+print("\nMost Populated Countries (3):")
+print(most_populated_countries('./data/countries_data.json', 3))
+
+emails = extract_emails('./data/email_exchange_big.txt')
+print(f"\nTotal unique emails extracted: {len(emails)}")
+
+for speech in speeches:
+    print(f"\n10 Most Common Words in {speech}:")
+    print(find_most_common_words(speech, 10))
+
+similarity = check_text_similarity('./data/michelle_obama_speech.txt', './data/melina_trump_speech.txt')
+print(f"\nSimilarity between Michelle and Melania's speech: {similarity}%")
+
+print("\n10 Most Repeated Words in Romeo and Juliet:")
+print(find_most_common_words('./data/romeo_and_juliet.txt', 10))
+
+print("\nHacker News Analysis:")
+print(analyze_hacker_news('./data/hacker_news.csv'))
