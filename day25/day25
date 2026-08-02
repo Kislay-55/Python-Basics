@@ -1,0 +1,40 @@
+import pandas as pd
+
+df = pd.read_csv('data/hacker_news.csv')
+
+first_five = df.head(5)
+print("--- First 5 Rows ---")
+print(first_five)
+
+last_five = df.tail(5)
+print("\n--- Last 5 Rows ---")
+print(last_five)
+
+title_series = df['title']
+print("\n--- Title Column as Pandas Series ---")
+print(title_series)
+
+rows, columns = df.shape
+print("\n--- Dataset Dimensions ---")
+print(f"Number of Rows: {rows}")
+print(f"Number of Columns: {columns}")
+
+python_titles = df[df['title'].str.contains('python', case=False, na=False)]
+print("\n--- Titles Containing 'Python' ---")
+print(python_titles)
+
+javascript_titles = df[df['title'].str.contains('javascript', case=False, na=False)]
+print("\n--- Titles Containing 'JavaScript' ---")
+print(javascript_titles)
+
+print("\n--- Data Exploration & Structure ---")
+df.info()
+
+print("\n--- Summary Statistics ---")
+print(df.describe(include='all'))
+
+print("\n--- Missing Values Count ---")
+print(df.isnull().sum())
+
+print("\n--- Unique Values Per Column ---")
+print(df.nunique())
