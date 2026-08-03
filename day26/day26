@@ -1,0 +1,54 @@
+from collections import Counter
+import re
+from flask import Flask, redirect, render_template, request, url_for
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def home():
+    techs = ["HTML", "CSS", "Flask", "Python"]
+    name = "30 Days Of Python Programming"
+    return render_template("home.html", techs=techs, name=name, title="Home")
+
+
+@app.route("/about")
+def about():
+    name = "30 Days Of Python Programming"
+    return render_template("about.html", name=name, title="About Us")
+
+
+@app.route("/post", methods=["GET", "POST"])
+def post():
+    name = "Text Analyzer"
+    if request.method == "GET":
+        return render_template("post.html", name=name, title=name)
+
+    content = request.form.get("content", "")
+
+    num_chars_with_spaces = len(content)
+    num_chars_no_spaces = len(content.replace(" ", "").replace("\r", "").replace("\n", ""))
+
+    words = re.findall(r"\b\w+\b", content.lower())
+    num_words = len(words)
+
+    word_counts = Counter(words)
+    most_frequent_words = word_counts.most_common(10)
+
+    return render_template(
+        "result.html",
+        content=content,
+        num_chars_with_spaces=num_chars_with_spaces,
+        num_chars_no_spaces=num_chars_no_spaces,
+        num_words=num_words,
+        most_frequent_words=most_frequent_words,
+    )
+
+
+@app.route("/result")
+def result():
+    return render_template("result.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
